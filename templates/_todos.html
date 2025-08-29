@@ -1,24 +1,28 @@
 
+<!-- Fragmento de lista de tareas. Renderiza cada tarea y sus acciones -->
 <ul id="todo-list">
-    {% for todo in todos %}
-    <li class="{% if todo.completa == 1 %}terminada{% endif %}">
-        <span class="task-text">{{ todo.nombre }}</span>
+    {% for todo in todos %} <!-- Jinja2: recorre la lista de tareas -->
+    <li class="{% if todo.completa == 1 %}terminada{% endif %}"> <!-- Marca como terminada si 'completa' es 1 -->
+        <span class="task-text">{{ todo.nombre }}</span> <!-- Muestra el nombre de la tarea -->
         <div class="actions">
+            <!-- Botón para marcar/desmarcar como completada -->
             <button 
-                hx-post="/toggle/{{ todo.id }}" 
-                hx-target="#todo-list" 
+                hx-post="/toggle/{{ todo.id }}"         <!-- HTMX: envía POST para cambiar estado -->
+                hx-target="#todo-list"                  <!-- HTMX: actualiza la lista completa -->
                 hx-swap="outerHTML">
-                {% if todo.completa == 1  %}Deshacer{% else %}Hecho{% endif %}
+                {% if todo.completa == 1  %}Deshacer{% else %}Hecho{% endif %} <!-- Texto dinámico -->
             </button>
+            <!-- Botón para editar la tarea -->
             <button class="edit" 
-                hx-get="/edit/{{ todo.id }}" 
-                hx-target="closest li" 
+                hx-get="/edit/{{ todo.id }}"            <!-- HTMX: obtiene el formulario de edición -->
+                hx-target="closest li"                  <!-- HTMX: reemplaza solo el <li> actual -->
                 hx-swap="outerHTML">
                 Editar
             </button>
+            <!-- Botón para borrar la tarea -->
             <button class="delete" 
-                hx-delete="/delete/{{ todo.id }}" 
-                hx-target="#todo-list" 
+                hx-delete="/delete/{{ todo.id }}"       <!-- HTMX: elimina la tarea -->
+                hx-target="#todo-list"                  <!-- HTMX: actualiza la lista completa -->
                 hx-swap="outerHTML">
                 Borrar
             </button>

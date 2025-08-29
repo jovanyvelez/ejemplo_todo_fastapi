@@ -44,7 +44,7 @@ Este proyecto es una aplicación web de lista de tareas (ToDo) construida con **
 1. Instala las dependencias:
    ```bash
    pip install -r requirements.txt
-   pip install fastapi[all] sqlalchemy
+   pip install "fastapi[standard]" sqlalchemy
    ```
 2. Ejecuta el servidor:
    ```bash
