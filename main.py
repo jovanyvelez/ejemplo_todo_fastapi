@@ -28,23 +28,19 @@ templates = Jinja2Templates(directory="templates")
 # Ruta principal: muestra la lista de tareas
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request, db: SessionDepends):
-    """
-    Renderiza la página principal con la lista de tareas.
-    - request: información de la petición HTTP
-    - db: sesión de base de datos
-    """
+
     todos_list = obtener_todas_las_tareas(db)
     return templates.TemplateResponse(request=request, name="index.html", context={"todos": todos_list})
 
 # Ruta para agregar una nueva tarea
 @app.post("/add", response_class=HTMLResponse)
-async def add_todo(request: Request, db: SessionDepends, task: str = Form(...)):
+async def add_todo(request: Request, db: SessionDepends, nombre: str = Form(...)):
     """
     Añade una nueva tarea y devuelve la lista actualizada.
-    - task: nombre de la tarea (recibido desde el formulario)
+    - nombre: nombre de la tarea (recibido desde el formulario)
     """
-    if task:
-        crear_nueva_tarea(task, db)
+    if nombre:
+        crear_nueva_tarea(nombre, db)
     todos_list = obtener_todas_las_tareas(db)
     return templates.TemplateResponse(request=request, name="_todos.html", context={"todos": todos_list})
 
