@@ -1,5 +1,5 @@
 
-<!-- index.html: Página principal de la aplicación Todo App -->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,10 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App con FastAPI y HTMX</title>
-    <!-- HTMX: biblioteca para interacciones AJAX sencillas -->
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <style>
-        /* Estilos generales para la app */
         body {
             font-family: sans-serif;
             background-color: #f4f4f9;
@@ -29,6 +27,7 @@
         ul {
             list-style-type: none;
             padding: 0;
+
         }
 
         li {
@@ -42,6 +41,7 @@
             text-decoration: line-through;
             color: #999;
         }
+
 
         .task-text {
             flex-grow: 1;
@@ -88,19 +88,13 @@
 
     <h1>Cosas por Hacer</h1>
 
-    <!-- Formulario para añadir nueva tarea -->
-    <form 
-        hx-post="/add"                  <!-- HTMX: envía POST para crear tarea -->
-        hx-target="#todo-list"          <!-- HTMX: actualiza el listado de tareas -->
-        hx-swap="outerHTML"             <!-- HTMX: reemplaza el HTML del objetivo -->
-    >
+    <form hx-post="/add" hx-target="#todo-list" hx-swap="outerHTML">
         <input type="text" name="nombre" placeholder="Nueva tarea..." required>
         <button type="submit">Añadir</button>
     </form>
 
-    <!-- Contenedor de la lista de tareas -->
     <div id="todo-list">
-        {% include '_todos.html' %} <!-- Jinja2: incluye el fragmento de la lista de tareas -->
+        {% include '_todos.html' %}
     </div>
 
 </body>

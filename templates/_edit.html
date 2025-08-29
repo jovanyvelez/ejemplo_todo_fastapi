@@ -1,18 +1,10 @@
 
-<!-- Fragmento de edición de tarea. Se usa para mostrar el formulario de edición en la lista -->
+
 <li hx-trigger="cancel-edit from:body">
-    <!-- Formulario para editar el nombre de la tarea -->
-    <form 
-        hx-put="/update/{{ todo.id }}"         <!-- HTMX: envía petición PUT para actualizar la tarea -->
-        hx-target="#todo-list"                 <!-- HTMX: actualiza el elemento con id 'todo-list' -->
-        hx-swap="outerHTML"                    <!-- HTMX: reemplaza el HTML completo del objetivo -->
-        style="display: flex; width: 100%;"
-    >
-        <!-- Campo de texto con el nombre actual de la tarea -->
+    <form hx-put="/update/{{ todo.id }}" hx-target="#todo-list" hx-swap="outerHTML" style="display: flex; width: 100%;">
         <input type="text" name="nombre" value="{{ todo['nombre'] }}" style="flex-grow: 1;">
         <div class="actions">
             <button type="submit">Guardar</button>
-            <!-- Botón para cancelar la edición y volver al listado -->
             <button type="button" hx-get="/" hx-target="#app" x-swap="outerHTML">Cancelar</button>
         </div>
     </form>
