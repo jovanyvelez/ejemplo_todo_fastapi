@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App con FastAPI y HTMX</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #444;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li.terminada .task-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+
+        .task-text {
+            flex-grow: 1;
+        }
+
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #5c67f2;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button.delete {
+            background-color: #f25c5c;
+        }
+
+        button.edit {
+            background-color: #f2b75c;
+        }
+
+        .actions button {
+            font-size: 0.8em;
+            padding: 5px 8px;
+        }
+    </style>
+</head>
+
+<body id="app">
+
+    <h1>Cosas por Hacer</h1>
+
+    <form action="/add" method="POST"">
+        <input type="text" name="nombre" placeholder="Nueva tarea..." required>
+        <button type="submit">Añadir</button>
+    </form>
+
+    <div id="todo-list">
+
+        <ul id="todo-list">
+
+            <li class="">
+                <span class="task-text">Asistir A Clase</span>
+                <div class="actions">
+                    <button >
+                        Hecho
+                    </button>
+                    <button class="edit">
+                        Editar
+                    </button>
+                    <button class="delete">
+                        Borrar
+                    </button>
+                </div>
+            </li>
+
+            <li class="">
+                <span class="task-text">Jugar Partido</span>
+                <div class="actions">
+                    <button>
+                        Hecho
+                    </button>
+                    <button class="edit">
+                        Editar
+                    </button>
+                    <button class="delete">
+                        Borrar
+                    </button>
+                </div>
+            </li>
+
+            <li class="">
+                <span class="task-text">Preparar Exámen</span>
+                <div class="actions">
+                    <button>
+                        Hecho
+                    </button>
+                    <button class="edit">
+                        Editar
+                    </button>
+                    <button class="delete">
+                        Borrar
+                    </button>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+</body>
+
+</html>

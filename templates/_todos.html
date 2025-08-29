@@ -1,0 +1,28 @@
+
+<ul id="todo-list">
+    {% for todo in todos %}
+    <li class="{% if todo.completa == 1 %}terminada{% endif %}">
+        <span class="task-text">{{ todo.nombre }}</span>
+        <div class="actions">
+            <button 
+                hx-post="/toggle/{{ todo.id }}" 
+                hx-target="#todo-list" 
+                hx-swap="outerHTML">
+                {% if todo.completa == 1  %}Deshacer{% else %}Hecho{% endif %}
+            </button>
+            <button class="edit" 
+                hx-get="/edit/{{ todo.id }}" 
+                hx-target="closest li" 
+                hx-swap="outerHTML">
+                Editar
+            </button>
+            <button class="delete" 
+                hx-delete="/delete/{{ todo.id }}" 
+                hx-target="#todo-list" 
+                hx-swap="outerHTML">
+                Borrar
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

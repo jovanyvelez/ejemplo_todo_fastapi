@@ -1,0 +1,10 @@
+
+<li hx-trigger="cancel-edit from:body">
+    <form hx-put="/update/{{ todo.id }}" hx-target="#todo-list" hx-swap="outerHTML" style="display: flex; width: 100%;">
+        <input type="text" name="nombre" value="{{ todo['nombre'] }}" style="flex-grow: 1;">
+        <div class="actions">
+            <button type="submit">Guardar</button>
+            <button type="button" hx-get="/" hx-target="#app" x-swap="outerHTML">Cancelar</button>
+        </div>
+    </form>
+</li>
